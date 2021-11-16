@@ -6,10 +6,8 @@ const gameBoard = document.querySelector(".grid-container")
 /* create items buttons and item array */
 itemArr = []
 for (let i = 0; i < 25; i++){
-    const items = document.createElement("button")
-    gameBoard.appendChild(items)
-    items.setAttribute('value', i)
-    items.setAttribute('data', "not-bomb")
+   
+
     itemArr.push(i)
     const itemLocation = itemArr[i]
    
@@ -19,24 +17,35 @@ console.log(itemArr)
 /* create bomb buttons and bomb array */
 bombArr = [] 
     for (j = 0; j < 5; j++){
-        const bombItem = document.createElement("button")
         const locationGenerator = Math.floor(Math.random() * 30)
-        gameBoard.appendChild(bombItem)
-        bombItem.setAttribute('value', locationGenerator)
-        bombItem.setAttribute('data', "bomb")
         bombArr.push(locationGenerator)
         const bombLocation = bombArr[j]
     }
+
     console.log(bombArr)
 
     /* joining both arrays */
 const joinArr = [...itemArr, ...bombArr];
+joinArr.forEach(num => { document.createElement("button")
+        gameBoard.appendChild(num)})
+        console.log(joinArr[26])
+     for (let k = 0; k < joinArr.length; k++ ){
+         notBomb = joinArr[k] < 25
+         bomb = joinArr[k] >= 25
+     if (joinArr[k] < 25){
+        createButton.setAttribute("value", "not-bomb")
+     } else if (joinArr[k] < 30) {
+        createButton.setAttribute("value", "bomb")
+     }
+    }
+
 
 
 /* Randomizing bombs location*/
-const randomizeArr = joinArr.sort(() => Math.random() - 0.5)
+let randomizeArr = joinArr.sort(() => Math.random() - 0.5)
 console.log(randomizeArr)
-
+ 
+    
     
 
 
