@@ -33,6 +33,13 @@ main {
     grid-row: 2 / 2;
 }
 
+.UI-img {
+    width: 1.8em;
+    height: 1.8em;
+    position: relative;
+    bottom: 0.35em;
+}
+
 .UI__clock, .UI__counter{
     background-color: black;
     color: red;
@@ -46,5 +53,18 @@ main {
     grid-row: 3/ 3;
 }
 
+.bomb {
+    background-color: blue;
+}
+
+.bomb:active {
+    background-color: red;
+}
+
+
+
+.not-bomb:active {
+    background-color: grey;
+}
 
 

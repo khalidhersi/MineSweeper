@@ -1,54 +1,47 @@
 const clock = document.querySelector(".UI__clock");
 const counter = document.querySelector(".UI__counter");
-const buttons = document.querySelectorAll(".grid__items");
-const gameBoard = document.querySelector(".grid-container")
+const gameBoard = document.querySelector(".grid-container");
+const buttons = document.querySelectorAll("button");
 
-/* create items buttons and item array */
-itemArr = []
-for (let i = 0; i < 25; i++){
-   
+let bombArr = [];
+let itemArr = [];
 
-    itemArr.push(i)
-    const itemLocation = itemArr[i]
-   
+/* Create items buttons Function*/
+const gameBoardFunc = () => {
+
+/* looping thorugh not-bomb items and pushing into item array */
+for (let i = 0; i < 25; i++) {
+  itemArr.push(i);
 }
-console.log(itemArr)
 
-/* create bomb buttons and bomb array */
-bombArr = [] 
-    for (j = 0; j < 5; j++){
-        const locationGenerator = Math.floor(Math.random() * 30)
-        bombArr.push(locationGenerator)
-        const bombLocation = bombArr[j]
-    }
+/* Creating 5 random bomb locations and  pushing into bomb array */
+for (j = 0; j < 5; j++) {
+  const locationGenerator = Math.floor(Math.random() * 30);
+  bombArr.push(locationGenerator);
+}
 
-    console.log(bombArr)
+/* Filing both arrays with value */
+bombArr.fill('bomb')
+itemArr.fill('not-bomb')
 
-    /* joining both arrays */
+/* joining both arrays */
 const joinArr = [...itemArr, ...bombArr];
-joinArr.forEach(num => { document.createElement("button")
-        gameBoard.appendChild(num)})
-        console.log(joinArr[26])
-     for (let k = 0; k < joinArr.length; k++ ){
-         notBomb = joinArr[k] < 25
-         bomb = joinArr[k] >= 25
-     if (joinArr[k] < 25){
-        createButton.setAttribute("value", "not-bomb")
-     } else if (joinArr[k] < 30) {
-        createButton.setAttribute("value", "bomb")
-     }
-    }
+console.log(joinArr);
 
+/* Randomizing bombs location within GameBoard*/
+let randomizeArr = joinArr.sort(() => Math.random() - 0.5);
+console.log(randomizeArr);
 
+/* Creating Buttons, Classnames and ID's for each item */
+for (let m = 0; m < randomizeArr.length; m++) {
+createItem = document.createElement("button");
+createItem.setAttribute("id", m)
+createItem.setAttribute("class", randomizeArr[m])
+gameBoard.appendChild(createItem);
+  }
+}
 
-/* Randomizing bombs location*/
-let randomizeArr = joinArr.sort(() => Math.random() - 0.5)
-console.log(randomizeArr)
- 
-    
-    
-
-
+gameBoardFunc()
 
 /*
         bombObj = {
@@ -91,4 +84,4 @@ counter.addEventListener("click" , event => {
 buttons.addEventListener("click" , event => {
 
 });
-*/                       
+*/
