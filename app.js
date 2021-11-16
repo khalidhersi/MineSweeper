@@ -3,39 +3,54 @@ const counter = document.querySelector(".UI__counter");
 const buttons = document.querySelectorAll(".grid__items");
 const gameBoard = document.querySelector(".grid-container")
 
-/* create grid items */
-for (let i = 0; i < 30; i++){
+/* create items buttons and item array */
+itemArr = []
+for (let i = 0; i < 25; i++){
     const items = document.createElement("button")
     gameBoard.appendChild(items)
-    if (i == this.bombLocation) {
-        items.setAttribute('value', bomb)
-        items.addEventListener("click", () => alert("bomb") )
-    }
-     items.setAttribute('value', i)
+    items.setAttribute('value', i)
+    items.setAttribute('data', "not-bomb")
+    itemArr.push(i)
+    const itemLocation = itemArr[i]
+   
 }
+console.log(itemArr)
+
+/* create bomb buttons and bomb array */
 bombArr = [] 
-    for (i = 0; i <= 5; i++){
-        let locationGenerator = Math.floor(Math.random() * 30)
+    for (j = 0; j < 5; j++){
+        const bombItem = document.createElement("button")
+        const locationGenerator = Math.floor(Math.random() * 30)
+        gameBoard.appendChild(bombItem)
+        bombItem.setAttribute('value', locationGenerator)
+        bombItem.setAttribute('data', "bomb")
         bombArr.push(locationGenerator)
-        bombObj = {
-            value: bombArr[i]
-        }
-        const bombLocation = bombObj.value
-        console.log(bombLocation)
+        const bombLocation = bombArr[j]
     }
-itemObj = {
+    console.log(bombArr)
 
-}
+    /* joining both arrays */
+const joinArr = [...itemArr, ...bombArr];
+
+
+/* Randomizing bombs location*/
+const randomizeArr = joinArr.sort(() => Math.random() - 0.5)
+console.log(randomizeArr)
+
     
-/* bomb location array */
-
-
-/*  grid items location array */
-
 
 
 
 /*
+        bombObj = {
+            data: bombArr[j]
+        }
+if (i == this.bombLocation) {
+        items.setAttribute('data', bomb)
+     items.setAttribute('value', i)
+}
+
+
 items.setAttribute('value', i)
        itemArr = Array(items)
        itemArr.forEach(item => {
@@ -67,4 +82,4 @@ counter.addEventListener("click" , event => {
 buttons.addEventListener("click" , event => {
 
 });
-*/
+*/                       
