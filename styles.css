@@ -41,8 +41,9 @@ main {
 }
 
 .UI__clock, .UI__counter{
-    background-color: black;
-    color: red;
+    background-color: #131313;
+    color: rgb(255, 102, 102);
+    width: 120px;
 }
 
 .grid-container  {

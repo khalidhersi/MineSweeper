@@ -1,6 +1,11 @@
 const clock = document.querySelector(".UI__clock");
-const counter = document.querySelector(".UI__counter");
+const counterScreen = document.querySelector(".UI__counter");
 const gameBoard = document.querySelector(".grid-container");
+
+let counter = 000;
+
+
+
 
 /* Temporary variables ready to be pushed */
 let squares = [];
@@ -99,6 +104,7 @@ const handleClick = (buttons) => {
     buttons.style.color = "blue";
     buttons.style.backgroundColor = "grey";
     buttons.style.fontSize = "2em";
+    counterScreen.innerHTML = counter += 001;
   };
 
   // When safe button is clicked
