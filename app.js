@@ -58,6 +58,7 @@ for (let n = 0; n < squares.length; n++){
   let right =squares[n +1];
   let left = squares[n -1];
 
+  /* If statmenet for bomb location */
   if (squares[n].classList.contains("not-bomb")){
     if (n < 24 && top.classList.contains("bomb"))
     {bombCount ++};
@@ -82,26 +83,35 @@ for (let n = 0; n < squares.length; n++){
 };
 gameBoardFunc();
 
+/* OnClick reveals buttons inner HTML */
 const handleClick = (buttons) => {
+
+  // When bomb is clicked 
   if(buttons.classList.contains("bomb")){
     buttons.style.backgroundColor = "red";
-    alert("bomb")
+    alert("Game-Over")
+    reset()
   };
+
+  // When button near Mine is clicked
   if(buttons.classList.contains("not-bomb")){
     buttons.innerHTML = buttons.getAttribute("value");
     buttons.style.color = "blue";
     buttons.style.backgroundColor = "grey";
     buttons.style.fontSize = "2em";
   };
-    let noBombs = buttons.getAttribute("value") == 0
+
+  // When safe button is clicked
+    let noBombs = buttons.getAttribute("value") == 0;
   if(noBombs){
-    buttons.innerHTML = ""
-  }
+    buttons.innerHTML = "";
+  };
 };
 
-
-
-
+/* Resets game after bomb is found */
+const reset = () => {
+  document.location.href = "";
+}
 
 
 
