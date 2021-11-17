@@ -39,7 +39,13 @@ buttons.setAttribute("id", m)
 buttons.classList.add(randomizeArr[m])
 gameBoard.appendChild(buttons);
 squares.push(buttons)
-  }
+
+  buttons.addEventListener("click", (event) => {
+    handleClick(buttons)
+  })
+   
+}
+  
 
 for (let n = 0; n < squares.length; n++){
   let bombCount = 0;
@@ -74,8 +80,11 @@ console.log(squares[n -1])
 }
 gameBoardFunc()
 
-
-
+const handleClick = (buttons) => {
+if(buttons.classList.contains("bomb")){
+  alert("bomb")
+}
+}
 
 
 
