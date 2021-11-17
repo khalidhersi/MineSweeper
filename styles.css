@@ -52,23 +52,3 @@ main {
     grid-template-rows: repeat(5, 3.8em);
     grid-row: 3/ 3;
 }
-
-.bomb {
-    background-color: blue;
-}
-
-.bomb:active {
-    background-color: red;
-}
-
-.not-bomb:active {
-    background-color: grey;
-}
-
-.bomb:active {
-    background-color: red;
-}
-
-#mine:active {
-    display: block;
-}

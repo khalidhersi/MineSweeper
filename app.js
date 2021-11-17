@@ -84,6 +84,7 @@ gameBoardFunc();
 
 const handleClick = (buttons) => {
   if(buttons.classList.contains("bomb")){
+    buttons.style.backgroundColor = "red";
     alert("bomb")
   };
   if(buttons.classList.contains("not-bomb")){
