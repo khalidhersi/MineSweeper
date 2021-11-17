@@ -2,9 +2,9 @@ const clock = document.querySelector(".UI__clock");
 const counter = document.querySelector(".UI__counter");
 const gameBoard = document.querySelector(".grid-container");
 
+let squares = [];
 let bombArr = [];
 let itemArr = [];
-let squares = [];
 
 /* Create items buttons Function*/
 const gameBoardFunc = () => {
@@ -39,37 +39,38 @@ buttons.setAttribute("id", m)
 buttons.classList.add(randomizeArr[m])
 gameBoard.appendChild(buttons);
 squares.push(buttons)
-console.log(squares)
   }
 
 for (let n = 0; n < squares.length; n++){
   let bombCount = 0;
-  const hasBomb = squares[n].classList.contains(".bomb")
-  const notBomb = squares[n].classList.contains(".not-bomb")
+console.log(squares)
+console.log(squares[n -1])
 
-  let top = buttons[n +10]
-  let topRight = buttons[n +10 +1]
-  let topLeft =buttons[n +10 +1]
-  let bottom = buttons[n -10]
-  let bottomRight = buttons[n -10 +1]
-  let bottomLeft = buttons[n -10 -1]
-  let right =buttons[n +1]
-  let left = buttons[n -1]
 
-  if (notBomb){
-    if (top.hasBomb){bombCount ++}
-    if (topRight.hasBomb){bombCount ++}
-    if (topLeft.hasBomb){bombCount ++}
-    if (bottom.hasBomb){bombCount ++}
-    if (bottomRight.hasBomb){bombCount ++}
-    if (bottomLeft.hasBomb){bombCount ++}
-    if (right.hasBomb){bombCount ++}
-    if (left.hasBomb){bombCount ++}
-    buttons[n].setAttribute("value", bombCount)
+  let top = squares[n +5]
+  let topRight = squares[n + +1]
+  let topLeft = squares[n +5 -1]
+  let bottom = squares[n -5]
+  let bottomRight = squares[n -5 +1]
+  let bottomLeft = squares[n -5 -1]
+  let right =squares[n +1]
+  let left = squares[n -1]
+  console.log(bottom)
+
+
+  if (squares[n].classList.contains("not-bomb")){
+  if (n < 24 && squares[n +5].classList.contains("bomb")){bombCount ++}
+  if (n < 23 && squares[n +5 +1].classList.contains("bomb")){bombCount ++}
+  if (n < 25 && squares[n +5 -1].classList.contains("bomb")){bombCount ++}
+  if (n > 5 && squares[n-5].classList.contains("bomb")){bombCount ++}
+  if (n > 6 && squares[n -1 -5].classList.contains("bomb")){bombCount ++}
+  if (n > 4 && squares[n + 1 -5].classList.contains("bomb")){bombCount ++}
+  if (n < 28 && squares[n +1].classList.contains("bomb")){bombCount ++}
+  if (n > 0 && squares[n -1].classList.contains("bomb")){bombCount ++}
+  squares[n].setAttribute("value", bombCount)
+  console.log(squares[n])
   }
 }
-
-    
 }
 gameBoardFunc()
 
@@ -131,3 +132,4 @@ buttons.addEventListener("click" , event => {
 
 });
 */
+
