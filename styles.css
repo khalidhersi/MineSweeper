@@ -61,10 +61,14 @@ main {
     background-color: red;
 }
 
-
-
 .not-bomb:active {
     background-color: grey;
 }
 
+.bomb:active {
+    background-color: red;
+}
 
+#mine:active {
+    display: block;
+}
