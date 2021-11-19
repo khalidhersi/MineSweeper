@@ -4,7 +4,7 @@ const gameBoard = document.querySelector(".grid-container");
 
 /* Temporary variables */
 let counter = 000;
-let time = 10;
+let time = 60;
 let allButtons = [];
 let mineArr = [];
 let itemArr = [];
@@ -18,7 +18,7 @@ const updateTimer = setInterval(() => {
   clock.innerHTML = time;
   if (time == -1) {
     alert("Time's up! Your DEAD!");
-    document.location.href = "";
+    window.location.href = "";
   }
 }, 1000);
 
