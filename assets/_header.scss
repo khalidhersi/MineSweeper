@@ -1,10 +1,17 @@
 @import "./variations";
 
+.title {
+  font-size: 3em;
+  display: flex;
+  justify-content: center;
+}
+
 .UI-container {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   border: 10px ridge $secondary-color;
+  border-radius: 10px;
   height: 65%;
   padding: 3px;
   font-size: 2em;
@@ -21,6 +28,7 @@
   .UI__clock,
   .UI__counter {
     background-color: $tertiary-color;
+    border-radius: 10px;
     color: $quatertiary-color;
     width: 120px;
   }

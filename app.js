@@ -2,122 +2,145 @@ const clock = document.querySelector(".UI__clock");
 const counterScreen = document.querySelector(".UI__counter");
 const gameBoard = document.querySelector(".grid-container");
 
+/* Temporary variables */
 let counter = 000;
-
-
-
-
-/* Temporary variables ready to be pushed */
-let squares = [];
-let bombArr = [];
+let time = 10;
+let allButtons = [];
+let mineArr = [];
 let itemArr = [];
+let mineImage = `<img src="./media/mine.png" />`;
+
+
+/* A timer counting down 1 minute  */
+const updateTimer = setInterval(() => {
+  time -= 1;
+  console.log(time);
+  clock.innerHTML = time;
+  if (time == -1) {
+    alert("Time's up! Your DEAD!");
+    time = 10;
+  }
+}, 1000);
 
 /* Create items buttons Function*/
 const gameBoardFunc = () => {
+  /* looping thorugh not-mine items and pushing into item array */
+  for (let i = 0; i < 25; i++) {
+    itemArr.push(i);
+  }
 
-/* looping thorugh not-bomb items and pushing into item array */
-for (let i = 0; i < 25; i++) {
-  itemArr.push(i);
-};
+  /* Creating 5 random mine locations and  pushing into mine array */
+  for (j = 0; j < 5; j++) {
+    const locationGenerator = Math.floor(Math.random() * 30);
+    mineArr.push(locationGenerator);
+  }
 
-/* Creating 5 random bomb locations and  pushing into bomb array */
-for (j = 0; j < 5; j++) {
-  const locationGenerator = Math.floor(Math.random() * 30);
-  bombArr.push(locationGenerator);
-};
+  /* Filing both arrays with value */
+  mineArr.fill("mine");
+  itemArr.fill("not-mine");
 
-/* Filing both arrays with value */
-bombArr.fill('bomb');
-itemArr.fill('not-bomb');
+  /* joining both arrays */
+  const joinArr = [...itemArr, ...mineArr];
+  console.log(joinArr);
 
-/* joining both arrays */
-const joinArr = [...itemArr, ...bombArr];
-console.log(joinArr);
+  /* Randomizing mines location within GameBoard*/
+  let randomizeArr = joinArr.sort(() => Math.random() - 0.5);
+  console.log(randomizeArr);
 
-/* Randomizing bombs location within GameBoard*/
-let randomizeArr = joinArr.sort(() => Math.random() - 0.5);
-console.log(randomizeArr);
+  /* Creating Buttons, Classnames and ID's for each item */
+  for (let m = 0; m < randomizeArr.length; m++) {
+    const buttons = document.createElement("button");
+    buttons.setAttribute("id", m);
+    buttons.classList.add(randomizeArr[m]);
+    gameBoard.appendChild(buttons);
+    allButtons.push(buttons);
 
-/* Creating Buttons, Classnames and ID's for each item */
-for (let m = 0; m < randomizeArr.length; m++) {
-  const buttons = document.createElement("button");
-  buttons.setAttribute("id", m);
-  buttons.classList.add(randomizeArr[m]);
-  gameBoard.appendChild(buttons);
-  squares.push(buttons);
+    /* onClick function call */
+    buttons.addEventListener("click", (event) => {
+      handleClick(buttons);
+    });
+  }
 
-  buttons.addEventListener("click", (event) => {
-    handleClick(buttons)
-  });
-};
-  
-/* Bomb Locator */
-for (let n = 0; n < squares.length; n++){
-  let bombCount = 0;
-  let top = squares[n +5];
-  let topRight = squares[n +5 +1];
-  let topLeft = squares[n +5 -1];
-  let bottom = squares[n -5];
-  let bottomRight = squares[n -5 +1];
-  let bottomLeft = squares[n -5 -1];
-  let right =squares[n +1];
-  let left = squares[n -1];
+  /* Mine Locator */
+  for (let n = 0; n < allButtons.length; n++) {
+    let mineCount = 0;
+    let top = allButtons[n + 5];
+    let topRight = allButtons[n + 5 + 1];
+    let topLeft = allButtons[n + 5 - 1];
+    let bottom = allButtons[n - 5];
+    let bottomRight = allButtons[n - 5 + 1];
+    let bottomLeft = allButtons[n - 5 - 1];
+    let right = allButtons[n + 1];
+    let left = allButtons[n - 1];
 
-  /* If statmenet for bomb location */
-  if (squares[n].classList.contains("not-bomb")){
-    if (n < 24 && top.classList.contains("bomb"))
-    {bombCount ++};
-    if (n < 23 && topRight.classList.contains("bomb"))
-    {bombCount ++};
-    if (n < 25 && topLeft.classList.contains("bomb"))
-    {bombCount ++};
-    if (n > 5 && bottom.classList.contains("bomb"))
-    {bombCount ++};
-    if (n > 4 && bottomRight.classList.contains("bomb"))
-    {bombCount ++};
-    if (n > 6 && bottomLeft.classList.contains("bomb"))
-    {bombCount ++};
-    if (n < 28 && right.classList.contains("bomb"))
-    {bombCount ++};
-    if (n > 0 && left.classList.contains("bomb"))
-    {bombCount ++};
-    squares[n].setAttribute("value", bombCount);
-    console.log(squares[n])
-    };
-  };
+    /* If statmenet for mine location using Cardinal directions */
+    if (allButtons[n].classList.contains("not-mine")) {
+      if (n < 24 && top.classList.contains("mine")) {
+        mineCount++;
+      }
+      if (n < 23 && topRight.classList.contains("mine")) {
+        mineCount++;
+      }
+      if (n < 25 && topLeft.classList.contains("mine")) {
+        mineCount++;
+      }
+      if (n > 5 && bottom.classList.contains("mine")) {
+        mineCount++;
+      }
+      if (n > 4 && bottomRight.classList.contains("mine")) {
+        mineCount++;
+      }
+      if (n > 6 && bottomLeft.classList.contains("mine")) {
+        mineCount++;
+      }
+      if (n < 28 && right.classList.contains("mine")) {
+        mineCount++;
+      }
+      if (n > 0 && left.classList.contains("mine")) {
+        mineCount++;
+      }
+      allButtons[n].setAttribute("value", mineCount);
+      console.log(allButtons[n]);
+    }
+  }
 };
 gameBoardFunc();
 
 /* OnClick reveals buttons inner HTML */
 const handleClick = (buttons) => {
-
-  // When bomb is clicked 
-  if(buttons.classList.contains("bomb")){
+  // When mine is clicked
+  if (buttons.classList.contains("mine")) {
     buttons.style.backgroundColor = "red";
-    alert("Game-Over")
-    reset()
-  };
+    alert(`Game-Over! Your Score is:${counter}!`);
+    // All Mines show
+    allButtons.forEach((eachMine) => {
+      if (eachMine.classList.contains("mine")) {
+        eachMine.innerHTML = mineImage;
+        buttons.style.fontSize = "2em";
+      }
+    });
+    /* Resets game after mine is found & revealed */
+    setInterval(() => {
+      document.location.href = "";
+    }, 1000);
+  }
 
   // When button near Mine is clicked
-  if(buttons.classList.contains("not-bomb")){
+  if (buttons.classList.contains("not-mine")) {
     buttons.innerHTML = buttons.getAttribute("value");
     buttons.style.color = "blue";
     buttons.style.backgroundColor = "grey";
     buttons.style.fontSize = "2em";
     counterScreen.innerHTML = counter += 001;
-  };
+  }
 
   // When safe button is clicked
-    let noBombs = buttons.getAttribute("value") == 0;
-  if(noBombs){
+  let noMines = buttons.getAttribute("value") == 0;
+  if (noMines) {
     buttons.innerHTML = "";
-  };
+  }
 };
 
-/* Resets game after bomb is found */
-const reset = () => {
-  document.location.href = "";
-}
 
 
 
@@ -125,15 +148,13 @@ const reset = () => {
 
 
 
-
-
-
+// Trail & Error Section
 /*
-        bombObj = {
-            data: bombArr[j]
+        mineObj = {
+            data: mineArr[j]
         }
-if (i == this.bombLocation) {
-        items.setAttribute('data', bomb)
+if (i == this.mineLocation) {
+        items.setAttribute('data', mine)
      items.setAttribute('value', i)
 }
 
@@ -170,4 +191,3 @@ buttons.addEventListener("click" , event => {
 
 });
 */
-

@@ -1,8 +1,15 @@
+.title {
+  font-size: 3em;
+  display: flex;
+  justify-content: center;
+}
+
 .UI-container {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   border: 10px ridge #fdfdfd;
+  border-radius: 10px;
   height: 65%;
   padding: 3px;
   font-size: 2em;
@@ -18,22 +25,24 @@
 .UI-container .UI__clock,
 .UI-container .UI__counter {
   background-color: #131313;
+  border-radius: 10px;
   color: #ff6666;
   width: 120px;
 }
 
-.title {
-  font-size: 3em;
-  display: flex;
-  justify-content: center;
+body {
+  background: white;
+  background: radial-gradient(circle, white 0%, #b0b0b0 175%);
 }
 
-main {
+.main {
   display: flex;
   justify-content: center;
 }
-main .container {
+.main .container {
   background-color: #e5e5e5;
+  border: 2px ridge #131313;
+  border-radius: 10px;
   padding: 10px;
   width: 20em;
   height: 30em;
@@ -42,9 +51,10 @@ main .container {
   grid-template-rows: 0% 12% 80%;
   gap: 1em;
 }
-main .container .grid-container {
+.main .container .grid-container {
   display: grid;
   border: 10px ridge #fdfdfd;
+  border-radius: 10px;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 3.8em);
   grid-row: 3/3;
