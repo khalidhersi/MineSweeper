@@ -19,6 +19,7 @@ const updateTimer = setInterval(() => {
   if (time == -1) {
     alert("Time's up! Your DEAD!");
     window.location.href = "";
+    time = 60
   }
 }, 1000);
 
