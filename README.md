@@ -1,9 +1,8 @@
 # MineSweeper
-=============
 
 Steps to make game
 ==================
-1. HTML, CSS Boilerplate
+1. HTML, SCSS Boilerplate
 2. JS defign variables to DOM
 3. Create a Function to create the game board and all the items within.
 4. Make arrays of bombs and non bombs.
@@ -20,3 +19,4 @@ Bugs To Fix
 ===========
 1. Buttons already clicked can be reclicked adding to the counter endlessly.
 2. Buttons on the edge count mines in the edge of a diffenrt row.
+

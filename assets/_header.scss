@@ -1,0 +1,27 @@
+@import "./variations";
+
+.UI-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border: 10px ridge $secondary-color;
+  height: 65%;
+  padding: 3px;
+  font-size: 2em;
+  text-align: center;
+  grid-row: 2 / 2;
+
+  .UI-img {
+    width: 1.8em;
+    height: 1.8em;
+    position: relative;
+    bottom: 0.35em;
+  }
+
+  .UI__clock,
+  .UI__counter {
+    background-color: $tertiary-color;
+    color: $quatertiary-color;
+    width: 120px;
+  }
+}

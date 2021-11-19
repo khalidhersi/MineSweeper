@@ -1,55 +1,51 @@
-.title {
-    font-size: 3em;
-    display: flex;
-    justify-content: center;
+.UI-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border: 10px ridge #fdfdfd;
+  height: 65%;
+  padding: 3px;
+  font-size: 2em;
+  text-align: center;
+  grid-row: 2/2;
+}
+.UI-container .UI-img {
+  width: 1.8em;
+  height: 1.8em;
+  position: relative;
+  bottom: 0.35em;
+}
+.UI-container .UI__clock,
+.UI-container .UI__counter {
+  background-color: #131313;
+  color: #ff6666;
+  width: 120px;
 }
 
+.title {
+  font-size: 3em;
+  display: flex;
+  justify-content: center;
+}
 
 main {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
-
-.container {
-    background-color: #E5E5E5;
-    padding: 10px;
-    width: 20em;
-    height: 30em;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 0% 12% 80%;
-    gap: 1em;
+main .container {
+  background-color: #e5e5e5;
+  padding: 10px;
+  width: 20em;
+  height: 30em;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 0% 12% 80%;
+  gap: 1em;
 }
-
-.UI-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    border: 10px ridge white;
-    height: 65%;
-    padding: 3px;
-    font-size: 2em;
-    text-align: center;
-    grid-row: 2 / 2;
-}
-
-.UI-img {
-    width: 1.8em;
-    height: 1.8em;
-    position: relative;
-    bottom: 0.35em;
-}
-
-.UI__clock, .UI__counter{
-    background-color: #131313;
-    color: rgb(255, 102, 102);
-    width: 120px;
-}
-
-.grid-container  {
-    display: grid;
-    border: 10px ridge white;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 3.8em);
-    grid-row: 3/ 3;
+main .container .grid-container {
+  display: grid;
+  border: 10px ridge #fdfdfd;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 3.8em);
+  grid-row: 3/3;
 }
