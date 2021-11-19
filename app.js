@@ -18,7 +18,7 @@ const updateTimer = setInterval(() => {
   clock.innerHTML = time;
   if (time == -1) {
     alert("Time's up! Your DEAD!");
-    time = 10;
+    document.location.href = "";
   }
 }, 1000);
 
@@ -112,13 +112,8 @@ const handleClick = (buttons) => {
   if (buttons.classList.contains("mine")) {
     buttons.style.backgroundColor = "red";
     alert(`Game-Over! Your Score is:${counter}!`);
-    // All Mines show
-    allButtons.forEach((eachMine) => {
-      if (eachMine.classList.contains("mine")) {
-        eachMine.innerHTML = mineImage;
-        buttons.style.fontSize = "2em";
-      }
-    });
+    // Reveal mine function call
+    revealMines()
     /* Resets game after mine is found & revealed */
     setInterval(() => {
       document.location.href = "";
@@ -140,8 +135,14 @@ const handleClick = (buttons) => {
     buttons.innerHTML = "";
   }
 };
-
-
+ /* Reaveal mine function */
+const revealMines = () => {
+  allButtons.forEach((eachMine) => {
+    if (eachMine.classList.contains("mine")) {
+      eachMine.innerHTML = mineImage;
+    }
+  });
+}
 
 
 
